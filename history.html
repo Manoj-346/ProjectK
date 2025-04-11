@@ -3,181 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="shortcut icon" href="exchange2.png" type="image/x-icon">
     <title>Exchange History</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background-image: url('background.jpg'); /* Change to your image */
+            background: url("https://t3.ftcdn.net/jpg/07/99/08/60/360_F_799086055_mT6kBof4yHnaYMDFLB5vu8cUClZpoXXw.jpg") no-repeat center center fixed;
             background-size: cover;
-            background-position: center;
             margin: 0;
             padding: 0;
         }
         nav {
-            background-color: #000000; /* Dark green for navigation bar */
+            background-color: #000000;
             padding: 10px;
+            display: flex;
+            justify-content: space-around;
         }
         nav a {
-            color: white; /* White text for links */
+            color: white;
             text-decoration: none;
             margin: 0 15px;
             font-size: 18px;
         }
         nav a:hover {
             text-decoration: underline;
-            color: #ffcc00; /* Change color on hover */
+            color: #ffcc00;
         }
         .container {
-            background: rgba(255, 255, 255, 0.9); /* Semi-transparent white background for container */
+            background: rgba(255, 255, 255, 0.9);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
             max-width: 600px;
-            margin: 50px auto;
-        }
-        h2 {
-            color: #2E8B57; /* Dark green for headings */
+            margin: 50px auto; /* Center the container */
+            text-align: left; /* Align text to the left */
         }
         table {
-            width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
+            width: 100%;
         }
         th, td {
             border: 1px solid #ddd;
             padding: 10px;
+            text-align: left;
         }
         th {
-            background-color: #007BFF; /* Blue for table header */
-            color: white;
+            background-color: #f0f0f0;
         }
-        td {
-            color: #333; /* Dark gray for table data */
-        }
-        button {
-            margin-top: 15px;
-            padding: 10px;
-            background: #2E8B57; /* Dark green background for button */
-            color: white; /* White text for button */
+        .delete-btn {
+            background-color: #ff0000;
+            color: #ffffff;
             border: none;
-            border-radius: 5px; /* Rounded corners for button */
+            padding: 5px 10px;
             cursor: pointer;
-            transition: background-color 0.3s; /* Smooth transition for background color */
         }
-        button:hover {
-            background: #1c5e3a; /* Darker green on hover */
+        .clear-btn {
+            background-color: #ff0000;
+            color: #ffffff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
         }
     </style>
 </head>
+
 <body>
-
     <nav>
-        <a href="index.html">Home</a>
+        <a href="4.html">Home</a>
+	 <a href="graphs/Chart.html">Graph</a>
+        <a href="history.html" id="history-link">History</a>
         <a href="rates.html">Exchange Rates</a>
-        <a href="history.html">History</a>
-        <a href="settings.html">Settings</a>
     </nav>
-
     <div class="container">
-        <h2>Currency Converter</h2>
-        <form id="converterForm">
-            <input type="number" id="amount" placeholder="Amount" required>
-            <select id="fromCurrency">
-                <option value="USD">USD</option>
-                <option value="EUR">EUR</option>
-                <!-- Add more currencies as needed -->
-            </select>
-            <select id="toCurrency">
-                <option value="EUR">EUR</option>
-                <option value="USD">USD</option>
-                <!-- Add more currencies as needed -->
-            </select>
-            <button type="submit">Convert</button>
-        </form>
-        <div id="conversionResult"></div>
-    </div>
-
-    <div class="container">
-        <h2>Exchange Rate History</h2>
-        <table id="historyTable">
+        <h2>EXCHANGE HISTORY</h2>
+        <table id="history-table">
             <tr>
                 <th>Date</th>
                 <th>Amount</th>
                 <th>From</th>
                 <th>To</th>
                 <th>Converted Amount</th>
+                <th>Actions</th>
             </tr>
         </table>
-        <button onclick="clearHistory()">Clear History</button>
+        <button class="clear-btn" id="clear-history-btn">Clear History</button>
     </div>
 
     <script>
-        document.getElementById("converterForm").addEventListener("submit", function(event) {
-            event.preventDefault(); // Prevent the form from submitting
-
-            const amount = parseFloat(document.getElementById("amount").value);
-            const fromCurrency = document.getElementById("fromCurrency").value;
-            const toCurrency = document.getElementById("toCurrency").value;
-
-            // Simulate conversion (replace this with actual conversion logic)
-            const conversionRate = 1.2; // Example conversion rate
-            const convertedAmount = (amount * conversionRate).toFixed(2);
-
-            // Display the result
-            document.getElementById("conversionResult").innerText = 
-                `${amount} ${fromCurrency} = ${convertedAmount} ${toCurrency}`;
-
-            // Save to history
-            saveToHistory(amount, fromCurrency, toCurrency, convertedAmount);
-            loadHistory(); // Refresh the history table
-        });
-
-        function saveToHistory(amount, from, to, convertedAmount) {
-            let history = JSON.parse(localStorage.getItem("exchangeHistory")) || [];
-            const entry = {
-                date: new Date().toLocaleString(),
-                amount: amount,
-                from: from,
-                to: to,
-                convertedAmount: convertedAmount
-            };
-            history.push(entry);
-            localStorage.setItem("exchangeHistory", JSON.stringify(history));
-        }
+        const historyTable = document.getElementById("history-table");
+        const clearHistoryBtn = document.getElementById("clear-history-btn");
+        let historyDisplayed = {};
 
         function loadHistory() {
-            let history = JSON.parse(localStorage.getItem("exchangeHistory")) || [];
-            const table = document.getElementById("historyTable");
-
-            // Clear existing rows except for the header
-            table.innerHTML = `<tr>
-                <th>Date</th>
-                <th>Amount</th>
-                <th>From</th>
-                <th>To</th>
-                <th>Converted Amount</th>
-            </tr>`;
-
-            history.forEach(entry => {
-                let row = `<tr>
-                    <td>${entry.date}</td>
-                    <td>${entry.amount}</td>
-                    <td>${entry.from}</td>
-                    <td>${entry.to}</td>
-                    <td>${entry.convertedAmount}</td>
-                </tr>`;
-                table.innerHTML += row;
+            const history = JSON.parse(localStorage.getItem('history')) || [];
+            historyTable.innerHTML = `
+                <tr>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Converted Amount</th>
+                    <th>Actions</th>
+                </tr>
+            `;
+            history.forEach((entry, index) => {
+                const key = `${entry.date}-${entry.amount}-${entry.from}-${entry.to}`;
+                if (!historyDisplayed[key]) {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${entry.date}</td>
+                        <td>${entry.amount}</td>
+                        <td>${entry.from}</td>
+                        <td>${entry.to}</td>
+                        <td>${entry.convertedAmount}</td>
+                        <td><button class="delete-btn" data-index="${index}">Delete</button></td>
+                    `;
+                    historyTable.appendChild(row);
+                    historyDisplayed[key] = true;
+                }
             });
         }
-        function clearHistory() {
-            localStorage.removeItem("exchangeHistory");
-            loadHistory(); 
-        }
 
-        window.onload = loadHistory;
-    </script> -->
-    <script src="script.js"></script>
+        loadHistory();
 
+        document.addEventListener("click", (e) => {
+            if (e.target.classList.contains("delete-btn")) {
+                const index = e.target.dataset.index;
+                const history = JSON.parse(localStorage.getItem('history')) || [];
+                history.splice(index, 1);
+                localStorage.setItem('history', JSON.stringify(history));
+                historyDisplayed = {};
+                loadHistory();
+            }
+        });
+
+        clearHistoryBtn.addEventListener("click", () => {
+            localStorage.removeItem('history');
+            historyDisplayed = {};
+            loadHistory();
+        });
+    </script>
 </body>
+
 </html>

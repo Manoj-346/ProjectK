@@ -1,6 +1,3 @@
-
-Run
-Copy code
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +11,7 @@ Copy code
             text-align: center;
             margin: 0;
             padding: 0;
-            background-image: url("C:/Users/manoj/Downloads/c6.jpg"); /* Replace with your image URL */
+            background-image: url("https://www.shutterstock.com/shutterstock/videos/1104895183/thumb/1.jpg?ip=x480"); /* Update with your new image URL */
             background-size: cover; /* Cover the entire viewport */
             background-position: center; /* Center the image */
             background-repeat: no-repeat; /* Prevent repeating the image */
@@ -26,15 +23,60 @@ Copy code
         }
 
         nav a {
-            color: white;
+            color: #ffcc00; /* Highlighted color for links */
             margin: 10px;
             text-decoration: none;
             transition: color 0.3s ease, transform 0.3s ease; /* Transition for color and transform */
         }
 
         nav a:hover {
-            color: #ffcc00; /* Change color on hover */
+            color: #ff9900; /* Change color on hover */
             transform: scale(1.1); /* Scale up on hover */
+        }
+
+        .nav-title {
+            color: #ffcc00; /* Highlighted color for title */
+            font-size: 60px; /* Font size */
+            font-weight: bold; /* Bold text */
+            display: inline-block; /* Ensure it aligns with other inline elements */
+        }
+
+        /* Dropdown styles */
+        .dropdown {
+            position: relative; /* Position relative for absolute positioning of dropdown items */
+            display: inline-block; /* Display inline with other nav items */
+        }
+
+        .dropbtn {
+            background-color: black; /* Match the navigation bar color */
+            color: #ffcc00; /* Highlighted color for dropdown button */
+            padding: 10px; /* Padding for the button */
+            text-decoration: none; /* No underline */
+            border: none; /* No border */
+            cursor: pointer; /* Pointer cursor on hover */
+        }
+
+        .dropdown-menu {
+            display: none; /* Hide the dropdown menu by default */
+            position: absolute; /* Position it absolutely */
+            background-color: #333; /* Background color for dropdown */
+            min-width: 160px; /* Minimum width for dropdown */
+            z-index: 1; /* Ensure it appears above other content */
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block; /* Show the dropdown menu on hover */
+        }
+
+        .dropdown-menu a {
+            color: #ffcc00; /* Highlighted color for dropdown items */
+            padding: 12px 16px; /* Padding for dropdown items */
+            text-decoration: none; /* No underline */
+            display: block; /* Display as block for full width */
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #575757; /* Change background on hover */
         }
 
         .home-hover-tab, .exchange-rate-history {
@@ -55,35 +97,50 @@ Copy code
         }
 
         .container {
-            margin: 20px;
+            margin: 0; /* Remove margin to allow full width */
             padding: 20px;
-            background: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+            background: transparent; /* Set to transparent */
             display: inline-block;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            opacity: 0; /* Start hidden for fade-in effect */
-            transform: translateY(20px); /* Start slightly below */
-            transition: opacity 0.5s ease, transform 0.5s ease; /* Transition for opacity and transform */
-            max-width: 800px; /* Limit the width for better readability */
-        }
-
-        .container.visible {
-            opacity: 1; /* Fully visible */
-            transform: translateY(0); /* Move to original position */
+            box-shadow: none; /* Remove shadow if you want a flat look */
+            opacity: 1; /* Ensure it's fully visible */
+            width: 100%; /* Set to full width */
+            max-width: 1200px; /* Optional: limit max width for larger screens */
+            text-align: left; /* Align text to the left */
         }
 
         h2 {
-            color: #2c3e50; /* Dark blue color for h2 */
+            color: #ffcc00; /* Highlighted color for h2 */
         }
 
         h3 {
-            color: #2980b9; /* Light blue color for h3 */
+            color: #ff9900; /* Highlighted color for h3 */
             margin-top: 20px; /* Space above headings */
         }
 
         p {
-            color: #666; /* Slightly lighter text color */
+            color: #ffffff; /* Change text color to white for better visibility */
+            background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent black background */
+            padding: 10px; /* Add padding for better readability */
+            border-radius: 5px; /* Optional: rounded corners */
             line-height: 1.6; /* Improve readability */
             margin: 10px 0; /* Space between paragraphs */
+        }
+
+        .box {
+            background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background for boxes */
+            border: 1px solid #ccc; /* Border for boxes */
+            border-radius: 10px; /* Rounded corners */
+            padding: 15px; /* Padding inside boxes */
+            margin: 10px 0; /* Margin between boxes */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+            display: flex; /* Use flexbox for alignment */
+            align-items: center; /* Center items vertically */
+        }
+
+        .box img {
+            max-width: 100%; /* Ensure images fit within the box */
+            height: auto; /* Maintain aspect ratio */
+            margin: 10px; /* Margin around images */
         }
 
         ol {
@@ -95,79 +152,256 @@ Copy code
         /* Footer styles */
         footer {
             background-color: rgba(20, 10, 20, 0.8); /* Semi-transparent background for footer */
-            color: white;
+            color: #ffcc00; /* Highlighted color for footer text */
             padding: 20px;
             position: relative;
             bottom: 0;
             width: 100%;
             text-align: center;
         }
+
+        .footer-container {
+            display: flex; /* Flexbox for layout */
+            justify-content: space-around; /* Space between sections */
+            max-width: 1200px; /* Max width for the footer */
+            margin: 0 auto; /* Center the footer */
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        }
+
+        .footer-section {
+            flex: 1; /* Each section takes equal space */
+            min-width: 200px; /* Minimum width for each section */
+            margin: 10px; /* Margin around sections */
+        }
+
+        .footer-section h3 {
+            margin-bottom: 10px; /* Space below headings */
+            color: #ffcc00; /* Highlighted color for section headings */
+        }
+
+        .footer-section ul {
+            list-style: none; /* Remove bullet points */
+            padding: 0; /* Remove padding */
+        }
+
+        .footer-section ul li {
+            margin: 5px 0; /* Space between list items */
+        }
+
+        .footer-section a {
+            color: #ffcc00; /* Highlighted color for footer links */
+            text-decoration: none; /* No underline */
+        }
+
+        .footer-section a:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+
+        .social-media {
+            display: flex; /* Flexbox for social media icons */
+            gap: 10px; /* Space between icons */
+        }
+
+        .footer-bottom {
+            text-align: center; /* Center text */
+            margin-top: 20px; /* Space above bottom text */
+            font-size: 14px; /* Smaller font size */
+        }
     </style>
 </head>
 <body>
-    <nav>
-        <a href="4.html">Home</a>
-        <a href="index.html">Currency Converter</a>
-        <a href="#" id="exchange-rate-history-link">Exchange Rate History</a> <!-- Link to trigger the hover tab -->
-        <div class="home-hover-tab" id="home-hover-tab">
-            <h3>Welcome to the Currency Converter</h3>
-            <p>This tool allows you to convert currencies quickly and easily. Use it to check the latest exchange rates and make informed decisions.</p>
+<nav>
+    <img src="C:/Users/manoj/Downloads/cc logo.jpg" alt="Logo" style="height: 50px; margin-right: 20px;"> <!-- Replace with your logo path -->
+    <span class="nav-title">ForexFusion</span> <!-- Website name -->
+    <a href="4.html" style="margin-left: 200px;">Home</a>
+    <a href="index.html">Currency Converter</a>
+    <a href="#" id="exchange-rate-history-link">Exchange Rate History</a> <!-- Link to trigger the hover tab -->
+    
+    <!-- Dropdown Menu -->
+    <div class="dropdown">
+        <a href="#" class="dropbtn">More</a>
+        <div class="dropdown-menu">
+            <a href="#">About Us</a>
+            <a href="#">Services</a>
+            <a href="#">Contact</a>
         </div>
-        <div class="exchange-rate-history" id="exchange-rate-history">
-            <h3>Exchange Rate History</h3>
-            <p>(coming soon...).</p>
-        </div>
-    </nav>
-
-    <div class="container" id="content">
-        <h2><strong>Currency Converter</strong></h2>
-        <img src="C:/Users/manoj/Downloads/cc1.jpg" alt="Currency Converter" style="max-width: 100%; height: auto; margin-bottom: 20px;"> <!-- Replace with your image path -->
-
-        <p><strong>A currency converter</strong> is a tool that converts one currency's value or quantity into the relative values or amounts of other currencies.</p>
-        
-        <p><strong>Currency conversion</strong> is carried out by utilising specialised software programmes that are created to be rapid and precise. Currency converters, which are widely and freely available online, can quickly convert the value of one currency into another. You can, for example, quickly convert dollars to rupees or rupees to pounds, and vice versa.</p>
-        
-        <p>They're especially helpful for travellers who want to know how much their home currency will rise or fall when visiting a new foreign country.</p>
-        
-        <p>Furthermore, currency converters assist firms that import and export goods globally by calculating the profits made from the sale and purchase of various goods. Currency conversion also benefits forex traders by allowing them to monitor changes in exchange rate valuations in real time.</p>
-        
-        <p>A universal currency converter is so named because it allows you to convert any foreign currency into any domestic currency.</p>
-        
-        <h3><strong>How Online Currency Converter Tool Works?</strong></h3>
-        <img src="C:/Users/manoj/Downloads/cc2.jpg" alt="Currency Converter" style="max-width: 100%; height: auto; margin-bottom: 20px;"> <!-- Replace with your image path -->
-
-        <p>Our currency converter uses the most recent exchange rates to determine how much your money is worth in different currencies. Before converting your money, it's critical to understand the current exchange rate because its value can fluctuate due to a variety of economic factors.</p>
-        
-        <h3><strong>Importance of Online Currency Converter Tool?</strong></h3>
-        <img src="C:/Users/manoj/Downloads/cc3.jpg" alt="Currency Converter" style="max-width: 60%; float: left; height: auto; margin-bottom: 20px;"> <!-- Replace with your image path -->
-
-        <p>Here are some of the benefits of using an online currency converter, whether you're investing, collecting, or planning a trip abroad:</p>
-        <ol>
-            <li><strong>Portability:</strong> A smartphone can be used to access an online calculator from anywhere in the world.</li>
-            <li><strong>Reliability:</strong> Currency converters are trustworthy because they rely on publicly available data from FOREX markets.</li>
-            <li><strong>Speed:</strong> Currency converters are quick and can display the result in seconds.</li>
-            <li><strong>Simple to use:</strong> Learning how to use a currency converter takes a relatively short amount of time.</li>
-            <li><strong>Travel-friendly:</strong> An online currency converter makes it simple to plan a trip.</li>
-            <li><strong>Free to use:</strong> An online currency converter is completely free to use and does not require a fee to pay.</li>
-        </ol>
-        
-        <h3><strong>What are the Currency Exchange Rates?</strong></h3>
-        <img src="C:/Users/manoj/Downloads/cc4.jpg" alt="Currency Converter" style="max-width: 60%; float: left; height: auto; margin-bottom: 20px;"> <!-- Replace with your image path -->
-
-        <p>The exchange rate is the cost of exchanging one currency for another. It is also known as a foreign exchange rate, forex rate, or FX rate.</p>
-        
-        <h3><strong>What is a Currency Exchange in India?</strong></h3>
-        <img src="C:/Users/manoj/Downloads/cc5.jpg" alt="Currency Converter" style="max-width: 60%; float: right; height: auto; margin-bottom: 20px;"> <!-- Replace with your image path -->
-
-        <p>The Foreign Exchange Management Act of June 2000 streamlined regulations governing currency exchange transactions.</p>
-        
-        <h3><strong>Currency Trading for Individual Investors</strong></h3>
-        <p>The currency market is a good investment opportunity for investors looking for an alternative to the stock market, fixed deposits, or other traditional forms of investment.</p>
-        
-        <h3><strong>Factors Affecting the Value of a Currency and its Exchange Rate</strong></h3>
-        <p>If you want to invest in the currency market, you must be aware of trends in international commerce, political and economic indices of other countries, international developments, and other factors that influence currency prices.</p>
     </div>
 
+    <div class="home-hover-tab" id="home-hover-tab">
+        <h3>Welcome to the Currency Converter</h3>
+        <p>Click the button below to access the currency converter tool.</p>
+        <a href="currency_converter.html" class="button">Go to Currency Converter</a>
+        <p>This tool allows you to convert currencies quickly and easily. Use it to check the latest exchange rates and make informed decisions.</p>
+    </div>
+    <div class="exchange-rate-history" id="exchange-rate-history">
+        <h3>Exchange Rate History</h3>
+        <p>(coming soon...).</p>
+    </div>
+</nav>
+
+<div class="container" id="content">
+    <h2><strong>Currency Converter</strong></h2>
+    <img src="C:/Users/manoj/Downloads/cc1.jpg" alt="Currency Converter" style="max-width: 100%; height: auto; margin-bottom: 20px;"> <!-- Replace with your image path -->
+
+    <p><strong>A currency converter</strong> is a tool that converts one currency's value or quantity into the relative values or amounts of other currencies.</p>
+    
+    <p><strong>Currency conversion</strong> is carried out by utilising specialised software programmes that are created to be rapid and precise. Currency converters, which are widely and freely available online, can quickly convert the value of one currency into another. You can, for example, quickly convert dollars to rupees or rupees to pounds, and vice versa.</p>
+    
+    <p>They're especially helpful for travellers who want to know how much their home currency will rise or fall when visiting a new foreign country.</p>
+    
+    <p>Furthermore, currency converters assist firms that import and export goods globally by calculating the profits made from the sale and purchase of various goods. Currency conversion also benefits forex traders by allowing them to monitor changes in exchange rate valuations in real time.</p>
+    
+    <p>A universal currency converter is so named because it allows you to convert any foreign currency into any domestic currency.</p>
+    
+    <h3><strong>How Online Currency Converter Tool Works?</strong></h3>
+    <img src="C:/Users/manoj/Downloads/cc2.jpg" alt="Currency Converter" style="max-width: 100%; height: auto; margin-bottom: 20px;"> <!-- Replace with your image path -->
+
+    <p>Our currency converter uses the most recent exchange rates to determine how much your money is worth in different currencies. Before converting your money, it's critical to understand the current exchange rate because its value can fluctuate due to a variety of economic factors.</p>
+    
+    <h3><strong>Importance of Online Currency Converter Tool?</strong></h3>
+    <img src="C:/Users/manoj/Downloads/cc3.jpg" alt="Currency Converter" style="max-width: 60%; float: left; height: auto; margin-bottom: 20px;"> <!-- Replace with your image path -->
+
+    <p>Here are some of the benefits of using an online currency converter, whether you're investing, collecting, or planning a trip abroad:
+     <br>
+        <br><strong>Portability:</strong> A smartphone can be used to access an online calculator from anywhere in the world.
+        <br>
+<br><strong>Reliability:</strong> Currency converters are trustworthy because they rely on publicly available data from FOREX markets.
+<br>
+        <br><strong>Speed:</strong> Currency converters are quick and can display the result in seconds.
+        <strong>Simple to use:</strong> Learning how to use a currency converter takes a relatively short amount of time.
+<br>
+        <br><strong>Travel-friendly:</strong> An online currency converter makes it simple to plan a trip.
+<br>        
+<br><strong>Free to use:</strong> An online currency converter is completely free to use and does not require a fee to pay.
+   </p>
+    <h3><strong>What are the Currency Exchange Rates?</strong></h3>
+    <img src="C:/Users/manoj/Downloads/cc4.jpg" alt="Currency Converter" style="max-width: 60%; float: left; height: auto; margin-bottom: 20px;"> <!-- Replace with your image path -->
+
+    <p>The exchange rate is the cost of exchanging one currency for another. It is also known as a foreign exchange rate, forex rate, or FX rate.</p>
+    
+    <h3><strong>What is a Currency Exchange in India?</strong></h3>
+    <img src="C:/Users/manoj/Downloads/cc5.jpg" alt="Currency Converter" style="max-width: 60%; float: right; height: auto; margin-bottom: 20px;"> <!-- Replace with your image path -->
+
+    <p>The Foreign Exchange Management Act of June 2000 streamlined regulations governing currency exchange transactions.</p>
+    
+    <h3><strong>Currency Trading for Individual Investors</strong></h3>
+    <p>The currency market is a good investment opportunity for investors looking for an alternative to the stock market, fixed deposits, or other traditional forms of investment.</p>
+    
+    <h3><strong>Factors Affecting the Value of a Currency and its Exchange Rate</strong></h3>
+    <p>If you want to invest in the currency market, you must be aware of trends in international commerce, political and economic indices of other countries, international developments, and other factors that influence currency prices.</p>
+</div>
+
+<!-- Footer Section -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3>Company</h3>
+            <ul>
+                <li><a href="#">About Us</a></li>
+                <p style="color: white; margin-top: 10px; font-size: 14px;">
+                    Our Currency Converter is a state-of-the-art tool designed to provide users with real-time exchange rates and seamless currency conversion. 
+                    Whether you're a traveler, investor, or business professional, our platform ensures accurate and up-to-date information to help you make informed financial decisions. 
+                    With a user-friendly interface and reliable data sourced from global financial markets, we strive to simplify the complexities of currency exchange for everyone.
+                </p>
+                <li><a href="#">Careers</a></li>
+                <p style="color: white; margin-top: 10px; font-size: 14px;">
+                    Join our dynamic team and contribute to the development of innovative financial solutions. 
+                    We are looking for passionate individuals who are eager to enhance our Currency Converter and provide users with the best experience possible. 
+                    Explore opportunities in technology, marketing, and customer support to help us shape the future of currency exchange.
+                </p>
+                <li><a href="#">Newsroom</a></li>
+                <p style="color: white; margin-top: 10px; font-size: 14px;">
+                    Stay updated with the latest news and developments regarding our Currency Converter. 
+                    Our newsroom provides insights into new features, partnerships, and market trends that impact currency exchange. 
+                    We aim to keep our users informed and engaged with relevant content that enhances their understanding of the financial landscape.
+                </p>
+                <li><a href="#">Investor Relations</a></li>
+                <p style="color: white; margin-top: 10px; font-size: 14px;">
+                    Our Currency Converter is not just a tool; it's a valuable asset for investors. 
+                    We provide detailed reports and analytics that help investors make informed decisions based on real-time exchange rates and market trends. 
+                    Our commitment to transparency and growth makes us a reliable partner for investors looking to navigate the currency market.
+                </p>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Products</h3>
+            <ul>
+                <li><a href="#">Currency Converter</a></li>
+                <p style="color: white; margin-top: 5px; font-size: 14px;">
+                    Our Currency Converter provides real-time exchange rates and allows users to convert currencies quickly and accurately. 
+                    Ideal for travelers, businesses, and investors, it simplifies the process of currency exchange.
+                </p>
+                <li><a href="#">Trading Platform</a></li>
+                <p style="color: white; margin-top: 5px; font-size: 14px;">
+                    Our Trading Platform offers a comprehensive suite of tools for forex trading, including advanced charting, market analysis, and automated trading options. 
+                    Designed for both beginners and experienced traders, it provides a seamless trading experience.
+                </p>
+                <li><a href="#">API Services</a></li>
+                <p style="color: white; margin-top: 5px; font-size: 14px;">
+                    Our API Services allow developers to integrate our currency conversion and exchange rate data into their applications. 
+                    With robust documentation and support, our APIs are designed for easy implementation and scalability.
+                </p>
+                <li><a href="#">Mobile App</a></li>
+                <p style="color: white; margin-top: 5px; font-size: 14px;">
+                    Our Mobile App provides users with the convenience of currency conversion on the go. 
+                    With a user-friendly interface and real-time updates, it’s perfect for travelers and anyone needing quick access to exchange rates.
+                </p>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Support</h3>
+            <ul>
+                <li><a href="#">Help Center</a></li>
+                <p style="color: white; margin-top: 5px; font-size: 14px;">
+                    Visit our Help Center for comprehensive guides and tutorials on how to use our Currency Converter effectively. 
+                    We provide step-by-step instructions and troubleshooting tips to enhance your experience.
+                </p>
+                <li><a href="#">Contact Us</a></li>
+                <p style="color: white; margin-top: 5px; font-size: 14px;">
+                    For immediate assistance, please call us at <strong>(123) 456-7890</strong>. 
+                    Our support team is available 24/7 to help you with any inquiries or issues you may have.
+                </p>
+                <li><a href="#">FAQs</a></li>
+                <p style="color: white; margin-top: 5px; font-size: 14px;">
+                    <strong>Q: How do I convert currencies?</strong><br>
+                    A: Simply enter the amount and select the currencies you wish to convert. The result will be displayed instantly.<br><br>
+                    <strong>Q: Are the exchange rates real-time?</strong><br>
+                    A: Yes, our Currency Converter uses real-time data from reliable financial sources to provide accurate exchange rates.<br><br>
+                    <strong>Q: Is there a fee for using the Currency Converter?</strong><br>
+                    A: No, our Currency Converter is completely free to use.
+                </p>
+                <li><a href="#">Feedback</a></li>
+                <p style="color: white; margin-top: 5px; font-size: 14px;">
+                    We value your feedback! Please let us know how we can improve our services or if you have any suggestions for new features. 
+                    Your input helps us enhance the Currency Converter experience for all users.
+                </p>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Follow Us</h3>
+            <ul class="social-media">
+                <li><a href="https://www.facebook.com" target="_blank"><img src="C:/Users/manoj/Downloads/facebook.jpg" alt="Facebook" style="max-width: 100%; height: 40px; margin-bottom: 20px;"></a></li>
+                <li><a href="https://www.twitter.com" target="_blank"><img src="C:/Users/manoj/Downloads/twitter.jpg" alt="Twitter" style="max-width: 100%; height: 40px; margin-bottom: 20px;"></a></li>
+                <li><a href="https://www.linkedin.com" target="_blank"><img src="C:/Users/manoj/Downloads/linkedin.jpg" alt="LinkedIn" style="max-width: 100%; height: 40px; margin-bottom: 20px;"></a></li>
+                <li><a href="https://www.instagram.com" target="_blank"><img src="C:/Users/manoj/Downloads/instagram.jpeg" alt="Instagram" style="max-width: 100%; height: 40px; margin-bottom: 20px;"></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <h3>Download Our App</h3>
+        <p style="color: white; margin-top: 5px; font-size: 14px;">
+            Get our Currency Converter app on your favorite platform:
+        </p>
+        <ul class="social-media" style="justify-content: center;">
+            <li><a href="https://play.google.com/store" target="_blank"><img src="C:/Users/manoj/Downloads/Google_Play_Store_badge_EN.jpg" alt="Google Play Store" style="max-width: 100%; height: 40px; margin-bottom: 20px;"></a></li>
+            <li><a href="https://www.apple.com/app-store/" target="_blank"><img src="C:/Users/manoj/Downloads/apple.jpg" alt="Apple App Store" style="max-width: 100%; height: 40px; margin-bottom: 20px;"></a></li>
+            <li><a href="https://www.microsoft.com/store" target="_blank"><img src="C:/Users/manoj/Downloads/microsoft.jpg" alt="Microsoft Store" style="max-width: 100%; height: 40px; margin-bottom: 20px;"></a></li>
+        </ul>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2023 ForexFusion. All rights reserved.</p>
+    </div>
+</footer>
     <script>
         // Function to make the container visible with a transition
         function showContent() {

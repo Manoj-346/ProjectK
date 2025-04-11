@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <title>Currency Converter</title>
     <style>
-        /* Your custom CSS styles here */
         * {
             margin: 0;
             padding: 0;
@@ -161,7 +160,6 @@
 <body>
     <nav>
         <a href="#" id="home-link">Home</a>
-        <a href="graphs/Chart.html">Graph</a>
         <a href="history.html">History</a>
         <a href="rates.html">Exchange Rates</a>
     </nav>
@@ -196,32 +194,17 @@
         </form>
     </div>
     <script>
-        // Your Firebase config
-        const firebaseConfig = {
-            apiKey: "AIzaSyA7rgfNocSiDRqN9HbGl4aUiyHSUhLh9g4",
-            authDomain: "currency-converter-a6135.firebaseapp.com",
-            databaseURL: "https://currency-converter-a6135-default-rtdb.firebaseio.com",
-            projectId: "currency-converter-a6135",
-            storageBucket: "currency-converter-a6135.firebasestorage.app",
-            messagingSenderId: "1006938095216",
-            appId: "1:1006938095216:web:6e558aede8ca2289ee3eb5",
-            measurementId: "G-D591VM7D6S"
-        };
-        
-        // Initialize Firebase
-        const app = firebase.initializeApp(firebaseConfig);
-        const db = firebase.database();
-
         const countryList = {
-            AED: "AE", AFN: "AF", ARS: "AR", AUD: "AU", BGN: "BG", CAD: "CA", CHF: "CH", CNY: "CN", EUR: "FR", GBP: "GB", INR: "IN", JPY: "JP", USD: "US"
+            AED: "AE", AFN: "AF", XCD: "AG", ALL: "AL", AMD: "AM", ANG: "AN", AOA: "AO", AQD: "AQ", ARS: "AR", AUD: "AU", AZN: "AZ", BAM: "BA", BBD: "BB", BDT: "BD", XOF: "BE", BGN: "BG", BHD: "BH", BIF: "BI", BMD: "BM", BND: "BN", BOB: "BO", BRL: "BR", BSD: "BS", NOK: "BV", BWP: "BW", BYR: "BY", BZD: "BZ", CAD: "CA", CDF: "CD", XAF: "CF", CHF: "CH", CLP: "CL", CNY: "CN", COP: "CO", CRC: "CR", CUP: "CU", CVE: "CV", CYP: "CY", CZK: "CZ", DJF: "DJ", DKK: "DK", DOP: "DO", DZD: "DZ", ECS: "EC", EEK: "EE", EGP: "EG", ETB: "ET", EUR: "FR", FJD: "FJ", FKP: "FK", GBP: "GB", GEL: "GE", GGP: "GG", GHS: "GH", GIP: "GI", GMD: "GM", GNF: "GN", GTQ: "GT", GYD: "GY", HKD: "HK", HNL: "HN", HRK: "HR", HTG: "HT", HUF: "HU", IDR: "ID", ILS: "IL", INR: "IN", IQD: "IQ", IRR: "IR", ISK: "IS", JMD: "JM", JOD: "JO", JPY: "JP", KES: "KE", KGS: "KG", KHR: "KH", KMF: "KM", KPW: "KP", KRW: "KR", KWD: "KW", KYD: "KY", KZT: "KZ", LAK: "LA", LBP: "LB", LKR: "LK", LRD: "LR", LSL: "LS", LTL: "LT", LVL: "LV", LYD: "LY", MAD: "MA", MDL: "MD", MGA: "MG", MKD: "MK", MMK: "MM", MNT: "MN", MOP: "MO", MRO: "MR", MTL: "MT", MUR: "MU", MVR: "MV", MWK: "MW", MXN: "MX", MYR: "MY", MZN: "MZ", NAD: "NA", XPF: "NC", NGN: "NG", NIO: "NI", NPR: "NP", NZD: "NZ", OMR: "OM", PAB: "PA", PEN: "PE", PGK: "PG", PHP: "PH", PKR: "PK", PLN: "PL", PYG: "PY", QAR: "QA", RON: "RO", RSD: "RS", RUB: "RU", RWF: "RW", SAR: "SA", SBD: "SB", SCR: "SC", SDG: "SD", SEK: "SE", SGD: "SG", SKK: "SK", SLL: "SL", SOS: "SO", SRD: "SR", STD: "ST", SVC: "SV", SYP: "SY", SZL: "SZ", THB: "TH", TJS: "TJ", TMT: "TM", TND: "TN", TOP: "TO", TRY: "TR", TTD: "TT", TWD: "TW", TZS: "TZ", UAH: "UA", UGX: "UG", USD: "US", UYU: "UY", UZS: "UZ", VEF: "VE", VND: "VN", VUV: "VU", YER: "YE", ZAR: "ZA", ZMK: "ZM", ZWD: "ZW"
         };
         const dropDown = document.querySelectorAll(".dropdown select"),
-              formCurrency = document.querySelector(".from select"),
-              toCurrency = document.querySelector(".to select"),
-              getBtn = document.getElementById("getExchangeRateBtn"),
-              amount = document.querySelector(".amount input"),
-              exchangeRateText = document.querySelector(".message"),
-              exchangeIcon = document.querySelector(".dropdown .icon");
+            formCurrency = document.querySelector(".from select"),
+            toCurrency = document.querySelector(".to select"),
+            getBtn = document.getElementById("getExchangeRateBtn"),
+            amount = document.querySelector(".amount input"),
+            exchangeRateText = document.querySelector(".message"),
+            exchangeIcon = document.querySelector(".dropdown .icon"),
+            apiKey = "99a0aec004527b1a155623da";
 
         for (let i = 0; i < dropDown.length; i++) {
             for (currency_code in countryList) {
@@ -257,6 +240,7 @@
             getExchangeRate();
         });
 
+        let rotationAngle = 0;
         exchangeIcon.addEventListener("click", () => {
             let tempCode = formCurrency.value;
             formCurrency.value = toCurrency.value;
@@ -264,6 +248,9 @@
             loadFlag(formCurrency);
             loadFlag(toCurrency);
             getExchangeRate();
+            rotationAngle = (rotationAngle === 0) ? 180 : 0;
+            exchangeIcon.style.transform = `rotate(${rotationAngle}deg)`;
+            exchangeIcon.style.transition = "transform 0.5s ease";
         });
 
         function getExchangeRate() {
@@ -273,7 +260,7 @@
                 amountVal = 1;
             }
             exchangeRateText.innerHTML = '<i class="fa-solid fa-arrows-rotate rotation"></i>';
-            let url = `https://v6.exchangerate-api.com/v6/99a0aec004527b1a155623da/latest/${formCurrency.value}`;
+            let url = `https://v6.exchangerate-api.com/v6/${apiKey}/latest/${formCurrency.value}`;
             fetch(url).then(response => response.json()).then(result => {
                 let exchangeRate = result.conversion_rates[toCurrency.value];
                 let totalExchangeRate = (amountVal * exchangeRate).toFixed(2);
@@ -287,20 +274,21 @@
         }
 
         function saveToHistory(amount, from, to, convertedAmount) {
-            let historyRef = db.ref('conversionHistory');
-            let newHistoryRef = historyRef.push();
-            newHistoryRef.set({
+            let history = JSON.parse(localStorage.getItem('history')) || [];
+            history.push({
                 amount,
                 from,
                 to,
                 convertedAmount,
                 date: new Date().toLocaleString()
             });
+            localStorage.setItem('history', JSON.stringify(history));
         }
-    </script>
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-analytics.js";
+
+        document.getElementById("home-link").addEventListener("click", function(event) {
+            event.preventDefault();
+            window.location.href = "4.html";
+        });
     </script>
 </body>
 </html>
