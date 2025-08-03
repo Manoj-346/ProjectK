@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Image Gallery</title>
+    <!-- Tailwind CSS for a modern and responsive design -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Base styles for the body */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+
+        /* --- Custom CSS for the image gallery --- */
+
+        /* The main gallery container uses a CSS Grid layout */
+        .image-gallery {
+            display: grid;
+            gap: 1rem; /* Space between grid items */
+            padding: 1rem;
+            
+            /* Default layout for small screens (mobile) */
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        /* The media query adjusts the grid layout for medium screens and larger */
+        @media (min-width: 768px) {
+            .image-gallery {
+                /* On tablets and desktops, show 4 columns */
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                gap: 1.5rem;
+            }
+        }
+
+        /* Styles for each individual figure in the gallery */
+        .image-figure {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+            transition: transform 0.2s ease-in-out;
+        }
+        
+        .image-figure:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Styles for the image inside the figure */
+        .image-figure img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* Styles for the caption */
+        .image-figure figcaption {
+            padding: 1rem;
+            font-size: 0.875rem;
+            color: #4b5563;
+        }
+    </style>
+</head>
+<body class="p-6 md:p-10">
+
+    <header class="text-center mb-10">
+        <h1 class="text-4xl font-extrabold text-gray-800">My Travel Gallery</h1>
+        <p class="mt-2 text-lg text-gray-600">A collection of photos from my adventures.</p>
+    </header>
+
+    <!--
+        This div is the main container for the gallery.
+        itemscope and itemtype="http://schema.org/ImageGallery" tell search engines
+        that this is a gallery of images.
+    -->
+    <div itemscope itemtype="http://schema.org/ImageGallery" class="image-gallery max-w-6xl mx-auto">
+
+        <!--
+            Each figure is an individual image with its own microdata.
+            itemscope and itemtype="http://schema.org/ImageObject" define each item
+            as a distinct image object.
+        -->
+        <figure itemprop="image" itemscope itemtype="http://schema.org/ImageObject" class="image-figure">
+            <!-- itemprop="contentUrl" specifies the URL of the image -->
+            <img itemprop="contentUrl" src="https://placehold.co/600x400/94a3b8/ffffff?text=Mountain+View" alt="A scenic view of mountains">
+            <!-- itemprop="caption" provides a description for the image -->
+            <figcaption itemprop="caption" class="font-medium text-gray-900">Mountain View</figcaption>
+        </figure>
+
+        <figure itemprop="image" itemscope itemtype="http://schema.org/ImageObject" class="image-figure">
+            <img itemprop="contentUrl" src="https://placehold.co/600x400/94a3b8/ffffff?text=Cityscape" alt="A bustling cityscape at night">
+            <figcaption itemprop="caption" class="font-medium text-gray-900">Cityscape</figcaption>
+        </figure>
+
+        <figure itemprop="image" itemscope itemtype="http://schema.org/ImageObject" class="image-figure">
+            <img itemprop="contentUrl" src="https://placehold.co/600x400/94a3b8/ffffff?text=Beach+Sunset" alt="A beautiful sunset over the beach">
+            <figcaption itemprop="caption" class="font-medium text-gray-900">Beach Sunset</figcaption>
+        </figure>
+
+        <figure itemprop="image" itemscope itemtype="http://schema.org/ImageObject" class="image-figure">
+            <img itemprop="contentUrl" src="https://placehold.co/600x400/94a3b8/ffffff?text=Forest+Path" alt="A path winding through a dense forest">
+            <figcaption itemprop="caption" class="font-medium text-gray-900">Forest Path</figcaption>
+        </figure>
+
+        <figure itemprop="image" itemscope itemtype="http://schema.org/ImageObject" class="image-figure">
+            <img itemprop="contentUrl" src="https://placehold.co/600x400/94a3b8/ffffff?text=Desert+Oasis" alt="A desert oasis with palm trees">
+            <figcaption itemprop="caption" class="font-medium text-gray-900">Desert Oasis</figcaption>
+        </figure>
+
+        <figure itemprop="image" itemscope itemtype="http://schema.org/ImageObject" class="image-figure">
+            <img itemprop="contentUrl" src="https://placehold.co/600x400/94a3b8/ffffff?text=Historical+Site" alt="An ancient historical site">
+            <figcaption itemprop="caption" class="font-medium text-gray-900">Historical Site</figcaption>
+        </figure>
+
+        <figure itemprop="image" itemscope itemtype="http://schema.org/ImageObject" class="image-figure">
+            <img itemprop="contentUrl" src="https://placehold.co/600x400/94a3b8/ffffff?text=Lake+Reflections" alt="Reflections on a calm lake">
+            <figcaption itemprop="caption" class="font-medium text-gray-900">Lake Reflections</figcaption>
+        </figure>
+
+        <figure itemprop="image" itemscope itemtype="http://schema.org/ImageObject" class="image-figure">
+            <img itemprop="contentUrl" src="https://placehold.co/600x400/94a3b8/ffffff?text=Rural+Countryside" alt="Rolling hills of the countryside">
+            <figcaption itemprop="caption" class="font-medium text-gray-900">Rural Countryside</figcaption>
+        </figure>
+
+    </div>
+
+</body>
+</html>

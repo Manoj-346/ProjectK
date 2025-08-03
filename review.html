@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Review - Schema.org Microdata</title>
+    <!-- Use Tailwind CSS for a clean, modern look -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles to enhance the page aesthetics */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+    </style>
+</head>
+<body class="p-6 md:p-10 flex items-center justify-center min-h-screen">
+
+    <!-- The main container for the product, with itemscope and itemtype for Schema.org Product -->
+    <div itemscope itemtype="http://schema.org/Product" class="bg-white p-8 md:p-12 rounded-2xl shadow-xl max-w-4xl w-full border border-gray-200">
+        <div class="flex flex-col md:flex-row items-center gap-8">
+            <!-- Product Image -->
+            <div class="md:w-1/3 w-full">
+                <!-- Updated image to a JBL headphones placeholder -->
+                <img itemprop="image" src="https://i5.walmartimages.com/seo/JBL-Tune-510BT-Wireless-on-ear-headphones-White_376b16af-9f66-461d-9dc4-5d60fdf9c64e.76cba280d4644417a21921eab1e1b963.jpeg" alt="Image of JBL headphones" class="w-full h-auto rounded-xl border border-gray-100 shadow-md">
+            </div>
+
+            <!-- Product Details and Review -->
+            <div class="md:w-2/3 w-full space-y-6">
+                <!-- Updated Product Name -->
+                <h1 itemprop="name" class="text-3xl font-bold text-gray-900">JBL Wave Pro Wireless Headphones</h1>
+
+                <!-- Updated Product Description -->
+                <p itemprop="description" class="text-gray-600 leading-relaxed">
+                    Experience dynamic sound with JBL Signature Sound. These headphones feature a comfortable, lightweight design, and up to 20 hours of playtime, perfect for your daily commute or workout sessions.
+                </p>
+
+                <!-- Microdata for the Review -->
+                <div itemprop="review" itemscope itemtype="http://schema.org/Review" class="border border-gray-200 rounded-xl p-6 bg-gray-50 space-y-4">
+                    <h2 class="text-xl font-semibold text-gray-800">Customer Review</h2>
+                    
+                    <!-- The author of the review -->
+                    <p class="text-gray-700">
+                        Reviewed by: <span itemprop="author" class="font-medium text-gray-900">Jane Doe</span>
+                    </p>
+
+                    <!-- The date the review was published -->
+                    <p class="text-sm text-gray-500">
+                        <span itemprop="datePublished">2024-08-02</span>
+                    </p>
+                    
+                    <!-- The review rating -->
+                    <div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating" class="flex items-center space-x-2">
+                        <span class="text-gray-700">Overall Rating:</span>
+                        <!-- Updated rating value -->
+                        <span itemprop="ratingValue" class="text-2xl font-bold text-yellow-500">4.0</span>
+                        <!-- bestRating and worstRating define the scale of the rating (e.g., 1 to 5) -->
+                        <span class="text-gray-500 text-sm">/
+                            <span itemprop="bestRating">5</span>
+                        </span>
+                        <!-- This is a hidden element to define the worst possible rating value for the scale -->
+                        <meta itemprop="worstRating" content="1" />
+                    </div>
+
+                    <!-- Updated review text -->
+                    <p itemprop="reviewBody" class="text-gray-800 italic bg-white p-4 rounded-lg border-l-4 border-yellow-500 shadow-sm">
+                        "The sound quality is great for the price point, and they are super comfortable. I wish the battery lasted a little longer, but overall, a solid choice for everyday use. The bass is punchy, as expected from JBL."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

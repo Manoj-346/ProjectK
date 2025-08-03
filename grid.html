@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Four Colored Squares</title>
+  <style>
+    .outer-square {
+      width: 400px;
+      height: 400px;
+      display: flex;
+      flex-wrap: wrap;
+      background-color: #ffffff;
+      border: 3px solid #333;
+      margin: 50px auto;
+    }
+
+    .inner-square {
+      width: 50%;
+      height: 50%;
+      box-sizing: border-box;
+    }
+
+    .color1 { background-color: crimson; }
+    .color2 { background-color: royalblue; }
+    .color3 { background-color: mediumseagreen; }
+    .color4 { background-color: gold; }
+  </style>
+</head>
+<body>
+  <div class="outer-square">
+    <div class="inner-square color1"></div>
+    <div class="inner-square color2"></div>
+    <div class="inner-square color3"></div>
+    <div class="inner-square color4"></div>
+  </div>
+</body>
+</html>

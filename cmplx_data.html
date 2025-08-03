@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quarterly Sales Report</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .table-container {
+            width: 100%;
+            max-width: 1000px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        caption {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1f2937;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        th, td {
+            padding: 1rem;
+            border: 1px solid #e5e7eb;
+        }
+
+        thead th {
+            background-color: #4b5563;
+            color: #ffffff;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        thead th:first-child {
+            border-top-left-radius: 10px;
+        }
+        
+        thead th:last-child {
+            border-top-right-radius: 10px;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+
+        tbody th {
+            background-color: #f3f4f6;
+            font-weight: 500;
+            color: #374151;
+        }
+        
+        .total-row {
+            font-weight: bold;
+            background-color: #d1d5db;
+        }
+        
+        @media (max-width: 640px) {
+            .table-container {
+                border-radius: 0;
+            }
+            body {
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="table-container">
+    <!-- The caption element provides a title or description for the table, improving accessibility. -->
+    <caption>Quarterly Sales Report - Q1-Q4 2024</caption>
+    
+    <table>
+        <!-- Thead contains the table's header rows. -->
+        <thead>
+            <tr>
+                <!-- rowspan="2" makes this cell span across two rows, aligning it with the sub-headers below. -->
+                <th rowspan="2">Product</th>
+                <!-- colspan="4" makes this cell span across four columns, grouping the quarterly sales data. -->
+                <th colspan="4" class="text-center">Quarterly Sales (in millions)</th>
+                <!-- rowspan="2" makes this cell span across two rows. -->
+                <th rowspan="2">Total Sales (in millions)</th>
+            </tr>
+            <tr>
+                <!-- The scope="col" attribute on each th helps screen readers understand that these are column headers. -->
+                <th scope="col">Q1</th>
+                <th scope="col">Q2</th>
+                <th scope="col">Q3</th>
+                <th scope="col">Q4</th>
+            </tr>
+        </thead>
+        
+        <!-- Tbody contains the main data rows of the table. -->
+        <tbody>
+            <tr>
+                <!-- The scope="row" attribute on each th helps screen readers understand that this is a row header. -->
+                <th scope="row">Product A</th>
+                <td>$12.5</td>
+                <td>$15.2</td>
+                <td>$14.8</td>
+                <td>$18.1</td>
+                <td>$60.6</td>
+            </tr>
+            <tr>
+                <th scope="row">Product B</th>
+                <td>$8.9</td>
+                <td>$10.3</td>
+                <td>$9.7</td>
+                <td>$11.5</td>
+                <td>$40.4</td>
+            </tr>
+            <tr>
+                <th scope="row">Product C</th>
+                <td>$22.0</td>
+                <td>$20.5</td>
+                <td>$24.1</td>
+                <td>$23.8</td>
+                <td>$90.4</td>
+            </tr>
+            <tr class="total-row">
+                <th scope="row">Grand Total</th>
+                <td>$43.4</td>
+                <td>$46.0</td>
+                <td>$48.6</td>
+                <td>$53.4</td>
+                <td>$191.4</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

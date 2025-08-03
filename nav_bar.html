@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navigation Bar</title>
+    <style>
+        /* Use Inter font for a modern look */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+        /* Body and general styling */
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            background-color: #f4f7f9;
+        }
+
+        /* Navigation bar container */
+        .navbar {
+            background-color: #2c3e50;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            border-bottom: 3px solid #3498db;
+        }
+
+        /* Navigation list styling */
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex; /* Makes the links horizontal */
+            justify-content: flex-end; /* Aligns links to the right */
+            align-items: center;
+            gap: 2rem; /* Space between links */
+        }
+
+        /* Individual list item styling */
+        .nav-links li a {
+            color: #ecf0f1;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Hover and focus effects for links */
+        .nav-links li a:hover,
+        .nav-links li a:focus {
+            background-color: #3498db;
+            color: #fff;
+            outline: none; /* Removes default focus outline */
+        }
+
+        /* --- Media query for smaller screens (e.g., mobile) --- */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                flex-direction: column; /* Stacks links vertically */
+                align-items: flex-start; /* Aligns links to the left */
+                gap: 1rem; /* Adjusts space for vertical layout */
+            }
+
+            .nav-links li {
+                width: 100%; /* Makes each link full width */
+            }
+
+            .nav-links li a {
+                display: block; /* Makes the link fill its container */
+                width: 100%;
+                text-align: left; /* Aligns text to the left */
+                padding: 0.75rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!--
+        Add more content here to see the navigation bar in action.
+        For example:
+        <div style="padding: 20px; text-align: center;">
+            <h1>Welcome to the Website</h1>
+            <p>This is the main content area.</p>
+        </div>
+    -->
+
+</body>
+</html>
