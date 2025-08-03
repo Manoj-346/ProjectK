@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="shortcut icon" href="exchange2.png" type="image/x-icon">
+    <title>Exchange History</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: url("https://t3.ftcdn.net/jpg/07/99/08/60/360_F_799086055_mT6kBof4yHnaYMDFLB5vu8cUClZpoXXw.jpg") no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background-color: #000000;
+            padding: 10px;
+            display: flex;
+            justify-content: space-around;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+            color: #ffcc00;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 50px auto; /* Center the container */
+            text-align: left; /* Align text to the left */
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f0f0f0;
+        }
+        .delete-btn {
+            background-color: #ff0000;
+            color: #ffffff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .clear-btn {
+            background-color: #ff0000;
+            color: #ffffff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="4.html">Home</a>
+	 <a href="graphs/Chart.html">Graph</a>
+        <a href="history.html" id="history-link">History</a>
+        <a href="rates.html">Exchange Rates</a>
+    </nav>
+    <div class="container">
+        <h2>EXCHANGE HISTORY</h2>
+        <table id="history-table">
+            <tr>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Converted Amount</th>
+                <th>Actions</th>
+            </tr>
+        </table>
+        <button class="clear-btn" id="clear-history-btn">Clear History</button>
+    </div>
+
+    <script>
+        const historyTable = document.getElementById("history-table");
+        const clearHistoryBtn = document.getElementById("clear-history-btn");
+        let historyDisplayed = {};
+
+        function loadHistory() {
+            const history = JSON.parse(localStorage.getItem('history')) || [];
+            historyTable.innerHTML = `
+                <tr>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Converted Amount</th>
+                    <th>Actions</th>
+                </tr>
+            `;
+            history.forEach((entry, index) => {
+                const key = `${entry.date}-${entry.amount}-${entry.from}-${entry.to}`;
+                if (!historyDisplayed[key]) {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${entry.date}</td>
+                        <td>${entry.amount}</td>
+                        <td>${entry.from}</td>
+                        <td>${entry.to}</td>
+                        <td>${entry.convertedAmount}</td>
+                        <td><button class="delete-btn" data-index="${index}">Delete</button></td>
+                    `;
+                    historyTable.appendChild(row);
+                    historyDisplayed[key] = true;
+                }
+            });
+        }
+
+        loadHistory();
+
+        document.addEventListener("click", (e) => {
+            if (e.target.classList.contains("delete-btn")) {
+                const index = e.target.dataset.index;
+                const history = JSON.parse(localStorage.getItem('history')) || [];
+                history.splice(index, 1);
+                localStorage.setItem('history', JSON.stringify(history));
+                historyDisplayed = {};
+                loadHistory();
+            }
+        });
+
+        clearHistoryBtn.addEventListener("click", () => {
+            localStorage.removeItem('history');
+            historyDisplayed = {};
+            loadHistory();
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ForexFusion - Login/Register</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url("https://img.freepik.com/free-vector/futuristic-digital-rupee-money-concept-background_1017-41184.jpg?t=st=1744011203~exp=1744014803~hmac=3450b295700906207e7faa87130617d8ed8121cb4cc0ebf15611db74860eea38&w=1380");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    nav {
+      background: black;
+      padding: 10px;
+      text-align: center;
+      animation: fadeIn 2s;
+    }
+    nav a {
+      color: white;
+      margin: 10px;
+      text-decoration: none;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    nav a:hover {
+      color: #ffcc00;
+      transform: scale(1.1);
+    }
+    .login-reg-form {
+      margin-top: 50px;
+      margin-bottom: 50px;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      animation: slideInLeft 2s;
+    }
+    footer {
+      background-color: rgba(20, 10, 20, 0.8);
+      color: white;
+      padding: 20px;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      animation: slideInUp 2s;
+    }
+    @keyframes slideInLeft {
+      from {
+        transform: translateX(-100px);
+      }
+      to {
+        transform: translateX(0);
+      }
+    }
+    @keyframes slideInUp {
+      from {
+        transform: translateY(100px);
+      }
+      to {
+        transform: translateY(0);
+      }
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <h2 style="color: white; display: inline-block;">ForexFusion</h2>
+    <a href="#" id="converter-link">Currency Converter</a>
+  </nav>
+
+  <div class="container">
+    <div class="row justify-content-start">
+      <div class="col-md-4 login-reg-form">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="login-tab" data-toggle="tab" href="#login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="register-tab" data-toggle="tab" href="#register">Register</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane fade show active" id="login">
+            <h2>Login</h2>
+            <form id="loginForm">
+              <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="login-email" required />
+              </div>
+              <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="login-password" required />
+              </div>
+              <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+          </div>
+          <div class="tab-pane fade" id="register">
+            <h2>Register</h2>
+            <form id="registerForm">
+              <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="register-email" required />
+              </div>
+              <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="register-password" required />
+              </div>
+              <div class="form-group">
+                <label for="confirm-password">Confirm Password:</label>
+                <input type="password" class="form-control" id="register-confirm-password" required />
+              </div>
+              <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Error Modal -->
+  <div class="modal fade" id="errorModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Error</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p id="errorText" class="text-danger"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div class="modal fade" id="successModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Success</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p id="successText" class="text-success">Your registration was successful!</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="redirectToLogin">Go to login</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 ForexFusion</p>
+  </footer>
+
+  <!-- Firebase Config -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyA7rgfNocSiDRqN9HbGl4aUiyHSUhLh9g4",
+      authDomain: "currency-converter-a6135.firebaseapp.com",
+      databaseURL: "https://currency-converter-a6135-default-rtdb.firebaseio.com",
+      projectId: "currency-converter-a6135",
+      storageBucket: "currency-converter-a6135.appspot.com",
+      messagingSenderId: "1006938095216",
+      appId: "1:1006938095216:web:6e558aede8ca2289ee3eb5",
+      measurementId: "G-D591VM7D6S"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    window.addEventListener('DOMContentLoaded', () => {
+      $('#registerForm').submit(function (e) {
+        e.preventDefault();
+        const email = $('#register-email').val();
+        const password = $('#register-password').val();
+        const confirmPassword = $('#register-confirm-password').val();
+
+        if (password !== confirmPassword) {
+          $('#errorText').text('Passwords do not match');
+          $('#errorModal').modal('show');
+          return;
+        }
+
+        createUserWithEmailAndPassword(auth, email, password)
+          .then(() => {
+            $('#successModal').modal('show');
+            $('#redirectToLogin').click(function () {
+              $('#successModal').modal('hide');
+              $('#register-tab').removeClass('active');
+              $('#login-tab').addClass('active');
+              $('#register').removeClass('active show');
+              $('#login').addClass('active show');
+            });
+          })
+          .catch((error) => {
+            $('#errorText').text(error.message);
+            $('#errorModal').modal('show');
+          });
+      });
+
+      $('#loginForm').submit(function (e) {
+        e.preventDefault();
+        const email = $('#login-email').val();
+        const password = $('#login-password').val();
+
+        signInWithEmailAndPassword(auth, email, password)
+          .then(() => {
+            window.location.href = '4.html'; // Replace with your dashboard or converter page
+          })
+          .catch((error) => {
+            $('#errorText').text('Invalid email or password');
+            $('#errorModal').modal('show');
+          });
+      });
+
+      $('#converter-link').click(function (e) {
+        if (!auth.currentUser) {
+          e.preventDefault();
+          $('#errorText').text('Please login to use the currency converter');
+          $('#errorModal').modal('show');
+        }
+      });
+    });
+  </script>
+
+  <!-- Bootstrap JS and jQuery -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

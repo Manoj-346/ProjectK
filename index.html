@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <title>Currency Converter</title>
+    <style>
+        /* Your custom CSS styles here */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: url("https://static.vecteezy.com/system/resources/previews/019/523/909/non_2x/abstract-currency-digital-finance-technology-modern-currency-exchange-transfer-profit-on-modern-background-futuristic-wave-flowing-blue-vector.jpg") no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background-color: #000000;
+            padding: 10px;
+            display: flex;
+            justify-content: space-around;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+            color: #ffcc00;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 50px auto;
+        }
+        h2 {
+            color: #2E8B57;
+        }
+        form {
+            margin-top: 1.5rem;
+            font-weight: 600;
+        }
+        .amount p {
+            font-size: 1.2rem;
+        }
+        form input, select, button, .message {
+            width: 100%;
+            border: none;
+            outline: none;
+        }
+        form input {
+            margin-top: 0.5rem;
+            border: 1px solid rgb(192, 192, 192);
+            font-size: 1.2rem;
+            padding: 0.5rem 0 0.5rem 0.5rem;
+            width: 97%;
+        }
+        .dropdown {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+        .dropdown p {
+            font-size: 1.1rem;
+        }
+        .dropdown .icon {
+            margin-top: 1.6rem;
+            padding: 0.5rem 0.7rem;
+            background-color: #ffdd6e;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.6rem;
+        }
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        .rotation {
+            animation: spin 0.5s infinite linear;
+            font-size: 1.4rem;
+        }
+        .selectContainer {
+            margin-top: 0.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff8d7;
+            border: 1px solid rgb(198, 198, 198);
+            width: 5.5rem;
+            padding: 0.2rem 0.3rem 0.2rem 0.5rem;
+        }
+        .selectContainer img {
+            max-width: 1.9rem;
+        }
+        .selectContainer select {
+            background-color: #fff8d7;
+            font-size: 1rem;
+            width: auto;
+            cursor: pointer;
+        }
+        .message {
+            margin: 2rem 0 1.5rem 0;
+            text-align: center;
+            font-size: 1.3rem;
+            color: #464646;
+            background-color: #ffc400;
+            padding: 0.75rem 0;
+        }
+        form button {
+            padding: 1rem 0;
+            background-color: #1b273b;
+            color: #ffffff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.5s;
+        }
+        form button:hover {
+            background-color: #2b3d5d;
+        }
+        @media(max-width: 400px) {
+            .container {
+                padding: 1.3rem 1rem;
+            }
+            .container h2 {
+                font-size: 1.4rem;
+            }
+            .dropdown .icon {
+                font-size: 1.2rem;
+            }
+            .message {
+                padding: 0.5rem 0;
+                font-size: 1rem;
+            }
+            .rotation {
+                font-size: 1rem;
+            }
+            form button {
+                padding: 0.75rem 0;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#" id="home-link">Home</a>
+        <a href="graphs/Chart.html">Graph</a>
+        <a href="history.html">History</a>
+        <a href="rates.html">Exchange Rates</a>
+    </nav>
+    <div class="container">
+        <h2>CURRENCY EXCHANGE CONVERTER</h2>
+        <form>
+            <div class="amount">
+                <p>Enter Amount</p>
+                <input type="text" value="1">
+            </div>
+            <div class="dropdown">
+                <div class="from">
+                    <p>From</p>
+                    <div class="selectContainer">
+                        <img src="https://flagsapi.com/US/flat/64.png" alt="">
+                        <select id="fromCurrency"></select>
+                    </div>
+                </div>
+                <div class="icon">
+                    <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                </div>
+                <div class="to">
+                    <p>To</p>
+                    <div class="selectContainer">
+                        <img src="https://flagsapi.com/IN/flat/64.png" alt="">
+                        <select id="toCurrency"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="message">Getting exchange rate...</div>
+            <button type="button" id="getExchangeRateBtn">Get Exchange Rate</button>
+        </form>
+    </div>
+    <script>
+        // Your Firebase config
+        const firebaseConfig = {
+            apiKey: "AIzaSyA7rgfNocSiDRqN9HbGl4aUiyHSUhLh9g4",
+            authDomain: "currency-converter-a6135.firebaseapp.com",
+            databaseURL: "https://currency-converter-a6135-default-rtdb.firebaseio.com",
+            projectId: "currency-converter-a6135",
+            storageBucket: "currency-converter-a6135.firebasestorage.app",
+            messagingSenderId: "1006938095216",
+            appId: "1:1006938095216:web:6e558aede8ca2289ee3eb5",
+            measurementId: "G-D591VM7D6S"
+        };
+        
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        const countryList = {
+            AED: "AE", AFN: "AF", ARS: "AR", AUD: "AU", BGN: "BG", CAD: "CA", CHF: "CH", CNY: "CN", EUR: "FR", GBP: "GB", INR: "IN", JPY: "JP", USD: "US"
+        };
+        const dropDown = document.querySelectorAll(".dropdown select"),
+              formCurrency = document.querySelector(".from select"),
+              toCurrency = document.querySelector(".to select"),
+              getBtn = document.getElementById("getExchangeRateBtn"),
+              amount = document.querySelector(".amount input"),
+              exchangeRateText = document.querySelector(".message"),
+              exchangeIcon = document.querySelector(".dropdown .icon");
+
+        for (let i = 0; i < dropDown.length; i++) {
+            for (currency_code in countryList) {
+                let selected;
+                if (i == 0) {
+                    selected = currency_code == "USD" ? "selected" : "";
+                } else if (i == 1) {
+                    selected = currency_code == "INR" ? "selected" : "";
+                }
+                let optionTag = `<option value="${currency_code}" ${selected}>${currency_code}</option>`;
+                dropDown[i].insertAdjacentHTML("beforeend", optionTag);
+            }
+            dropDown[i].addEventListener("change", e => {
+                loadFlag(e.target);
+            });
+        }
+
+        function loadFlag(element) {
+            for (code in countryList) {
+                if (code == element.value) {
+                    let imgTag = element.parentElement.querySelector("img");
+                    imgTag.src = `https://flagsapi.com/${countryList[code]}/flat/64.png`;
+                }
+            }
+        }
+
+        window.addEventListener("load", () => {
+            getExchangeRate();
+        });
+
+        getBtn.addEventListener("click", e => {
+            e.preventDefault();
+            getExchangeRate();
+        });
+
+        exchangeIcon.addEventListener("click", () => {
+            let tempCode = formCurrency.value;
+            formCurrency.value = toCurrency.value;
+            toCurrency.value = tempCode;
+            loadFlag(formCurrency);
+            loadFlag(toCurrency);
+            getExchangeRate();
+        });
+
+        function getExchangeRate() {
+            let amountVal = amount.value;
+            if (amountVal == "" || amountVal == "0") {
+                amount.value = "1";
+                amountVal = 1;
+            }
+            exchangeRateText.innerHTML = '<i class="fa-solid fa-arrows-rotate rotation"></i>';
+            let url = `https://v6.exchangerate-api.com/v6/99a0aec004527b1a155623da/latest/${formCurrency.value}`;
+            fetch(url).then(response => response.json()).then(result => {
+                let exchangeRate = result.conversion_rates[toCurrency.value];
+                let totalExchangeRate = (amountVal * exchangeRate).toFixed(2);
+                exchangeRateText.innerHTML = `${amountVal} ${formCurrency.value} = ${totalExchangeRate} ${toCurrency.value}`;
+                saveToHistory(amountVal, formCurrency.value, toCurrency.value, totalExchangeRate);
+            })
+            .catch(error => {
+                exchangeRateText.innerHTML = "Failed to get exchange rate..";
+                console.error('Error fetching exchange rate:', error);
+            });
+        }
+
+        function saveToHistory(amount, from, to, convertedAmount) {
+            let historyRef = db.ref('conversionHistory');
+            let newHistoryRef = historyRef.push();
+            newHistoryRef.set({
+                amount,
+                from,
+                to,
+                convertedAmount,
+                date: new Date().toLocaleString()
+            });
+        }
+    </script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-analytics.js";
+    </script>
+</body>
+</html>
